@@ -1,19 +1,18 @@
-import Link from "next/link"
-import React from "react";
+'use client';
 
-  export default function Hello(){
-    return(
-    <>
-        <h1>hello</h1>
-        <ul>
-            <li>prod 1</li>
-            <li>prod 2</li>
-        </ul>
+import { useEffect, useState } from 'react';
 
-        <button type="button" onClick={testNavigate}>hello</button>
-    </>)
+export default function Products() {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      const response = await fetch('/api/products');
+      const data = await response.json();
+      console.log(data, "data")
+      setProducts(data);
+    }
+    fetchData();
+  }, []);
+
 }
-
-// onPress={() => {return <Link href={'/userLogin'}></Link>}
-
- const testNavigate  = () => console.log("test")

@@ -7,10 +7,44 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model products_info {
-  id          String @id @default(auto()) @map("_id") @db.ObjectId
-  description String
-  id_         Int    @map("id")
-  name        String
-  quantity    Int
+type ProductInfoImages {
+  alt String
+  url String
+}
+
+type ProductInfoReviews {
+  comment String
+  rating  Int
+  user    String
+}
+
+type ProductInfoSeller {
+  location String
+  name     String
+  rating   Float
+}
+
+type ProductInfoSpecifications {
+  batteryLife  String
+  color        String
+  connectivity String
+  dimensions   String
+  weight       String
+}
+
+model ProductInfo {
+  id             String                    @id @default(auto()) @map("_id") @db.ObjectId
+  brand          String
+  categories     String[]
+  currency       String
+  description    String
+  id_            String                    @map("id")
+  images         ProductInfoImages[]
+  name           String
+  price          Float
+  rating         Float
+  reviews        ProductInfoReviews[]
+  seller         ProductInfoSeller
+  specifications ProductInfoSpecifications
+  stock          Int
 }
