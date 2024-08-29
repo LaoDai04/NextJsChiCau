@@ -3,7 +3,7 @@ import SignIn from "../utils/LoginComponent"
 async function Page() {
   return (
     <>
-      <h1>hrllo</h1>
+      <h1>hello</h1>
       <SignIn/>
     </>
   )
